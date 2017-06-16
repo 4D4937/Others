@@ -7,7 +7,9 @@ config_file='/etc/ssh/sshd_config'
 [ $(id -u) != "0" ] && { echo "Error: You must be root to run this script"; exit 1; }
 
 #ssh_config
+mkdir .ssh
 cd /root/.ssh/ || exit
+touch authorized_keys
 wget https://raw.githubusercontent.com/4D4937/Others/master/libertyss_rsa.pub
 cat /root/.ssh/libertyss_rsa.pub >>  /root/.ssh/authorized_keys
 sed -i "47s/#/ /g" ${config_file}
