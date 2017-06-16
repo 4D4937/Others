@@ -8,7 +8,7 @@ config_file='/etc/ssh/sshd_config'
 
 #ssh_config
 cd /root/.ssh/
-wget https://github.com/4D4937/Others/edit/master/ssh_key
+wget https://github.com/4D4937/Others/edit/master/libertyss_rsa.pub
 cat /root/.ssh/libertyss_rsa.pub >>  /root/.ssh/authorized_keys
 sed -i "47s/#/ /g" ${config_file}
 sed -i "48s/#/ /g" ${config_file}
