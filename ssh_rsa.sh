@@ -13,7 +13,7 @@ cat /root/.ssh/libertyss_rsa.pub >>  /root/.ssh/authorized_keys
 sed -i "47s/#/ /g" ${config_file}
 sed -i "48s/#/ /g" ${config_file}
 sed -i "49s/#/ /g" ${config_file} 
-sed -i "64s/yes/no/g" ${config_file}
+sed -i "66s/yes/no/g" ${config_file}
 
 service sshd restart
 
