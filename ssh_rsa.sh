@@ -32,10 +32,10 @@ cd /root/.ssh/ || exit
 touch authorized_keys
 wget https://raw.githubusercontent.com/4D4937/Others/master/libertyss_rsa.pub
 cat /root/.ssh/libertyss_rsa.pub >>  /root/.ssh/authorized_keys
-sed -i "47s/#/ /g" ${config_file}
-sed -i "48s/#/ /g" ${config_file}
-sed -i "49s/#/ /g" ${config_file} 
-sed -i "66s/yes/no/g" ${config_file}
+sed -i "s/#RSAAuthentication/RSAAuthentication/g" ${config_file}
+sed -i "s/#PubkeyAuthentication/PubkeyAuthentication/g" ${config_file}
+sed -i "s/#AuthorizedKeysFile/AuthorizedKeysFile/g" ${config_file} 
+sed -i "s/PasswordAuthentication yes/PasswordAuthentication no/g" ${config_file}
 
 service sshd restart
 systemctl restart sshd
