@@ -27,11 +27,13 @@ check_sys(){
 }
 
 #ssh_config
-mkdir .ssh
+mkdir ~/.ssh
+chmod 700 ~/.ssh
 cd /root/.ssh/ || exit
 touch authorized_keys
 wget https://raw.githubusercontent.com/4D4937/Others/master/libertyss_rsa.pub
 cat /root/.ssh/libertyss_rsa.pub >>  /root/.ssh/authorized_keys
+chmod 600 authorized_keys
 sed -i "s/#RSAAuthentication/RSAAuthentication/g" ${config_file}
 sed -i "s/#PubkeyAuthentication/PubkeyAuthentication/g" ${config_file}
 sed -i "s/#AuthorizedKeysFile/AuthorizedKeysFile/g" ${config_file} 
