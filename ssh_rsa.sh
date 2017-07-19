@@ -37,7 +37,6 @@ chmod 600 authorized_keys
 sed -i "s/#RSAAuthentication/RSAAuthentication/g" ${config_file}
 sed -i "s/#PubkeyAuthentication/PubkeyAuthentication/g" ${config_file}
 sed -i "s/#AuthorizedKeysFile/AuthorizedKeysFile/g" ${config_file} 
-sed -i "s/PasswordAuthentication yes/PasswordAuthentication no/g" ${config_file}
 
 service sshd restart
 systemctl restart sshd
