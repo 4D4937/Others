@@ -4,3 +4,7 @@
 ``` bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/master/authorized.sh && bash authorized.sh liber
 ```
+### gre_setup
+``` bash
+wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/master/gre_setup && python gre_setup
+```
