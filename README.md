@@ -8,3 +8,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/m
 ``` bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/master/gre_setup && python gre_setup
 ```
+### gre_setup
+``` bash
+wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/master/build.sh && bash build.sh
+```
