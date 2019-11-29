@@ -10,5 +10,5 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/m
 ```
 ### 内网组建
 ``` bash
-wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/master/build.sh && bash build.sh
+wget -N --no-check-certificate https://github.com/4D4937/Others/raw/master/build.sh && bash build.sh
 ```
