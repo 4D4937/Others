@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <openssl/evp.h>
 #include <openssl/rand.h>
+#include <openssl/err.h>
 
 void handleErrors(void) {
     ERR_print_errors_fp(stderr);
@@ -103,7 +104,7 @@ int main(void) {
         read_input("Enter the text to decrypt (in hex format): ", input_text, 1024);
         int input_len = strlen((char *)input_text) / 2;
         for (int i = 0; i < input_len; i++) {
-            sscanf((char *)input_text + 2 * i, "%02x", &encrypted_text[i]);
+            sscanf((char *)input_text + 2 * i, "%02hhx", &encrypted_text[i]);
         }
 
         int decrypted_len = decrypt_cbc(encrypted_text, input_len, key, iv, decrypted_text);
