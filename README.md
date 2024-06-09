@@ -12,3 +12,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/4D4937/Others/m
 ``` bash
 wget -N --no-check-certificate https://github.com/4D4937/Others/raw/master/build.sh && bash build.sh
 ```
+
+``` bash
+wget -N --no-check-certificate https://github.com/4D4937/Others/raw/master/build.sh && bash build.sh
+```
