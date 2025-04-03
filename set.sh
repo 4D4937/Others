@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 配置 YUM 源
-wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.cloud.tencent.com/repo/centos7_base.repo
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
 yum clean all
 yum makecache
