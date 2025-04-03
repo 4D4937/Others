@@ -26,24 +26,5 @@ echo "*/15 * * * * root /usr/sbin/ntpdate ntp1.aliyun.com &>/dev/null" >> /etc/c
 systemctl restart crond
 echo "时间同步任务已配置"
 
-# 安装 ZeroTier
-curl -s https://install.zerotier.com | sudo bash
-
-# 启动并设置开机自启
-sudo systemctl enable zerotier-one
-sudo systemctl start zerotier-one
-
-echo "ZeroTier 已安装并启动"
-
-# 加入 ZeroTier 网络
-NETWORK_ID="6ab565387aed6259"
-sudo zerotier-cli join $NETWORK_ID
-
-# 等待 5 秒后检查网络状态
-sleep 5
-sudo zerotier-cli listnetworks
-
-echo "ZeroTier 网络已加入"
-
 # 重启服务器
 reboot
