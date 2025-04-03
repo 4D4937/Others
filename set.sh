@@ -4,7 +4,7 @@
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
 yum clean all
-yum makecache
+#yum makecache
 
 echo "YUM 源配置完成"
 
