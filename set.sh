@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# 配置 DNS
-echo "nameserver 223.5.5.5" > /etc/resolv.conf
-echo "DNS 配置完成：223.5.5.5"
-
 # 配置 YUM 源
 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
