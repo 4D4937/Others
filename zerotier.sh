@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # ZeroTier 配置
-IDENTITY="b88b96282a"
 NETWORK_ID="6ab565387aed6259"
 
 # 安装 ZeroTier
@@ -12,9 +11,6 @@ install_zerotier() {
     echo "启动 ZeroTier 服务..."
     sudo systemctl enable zerotier-one
     sudo systemctl start zerotier-one
-
-    echo "设置 orbit 节点..."
-    sudo zerotier-cli orbit "$IDENTITY" "$IDENTITY"
 
     echo "加入 ZeroTier 网络: $NETWORK_ID"
     sudo zerotier-cli join "$NETWORK_ID"
