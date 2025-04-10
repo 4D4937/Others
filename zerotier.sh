@@ -28,7 +28,7 @@ uninstall_zerotier() {
     sudo systemctl stop zerotier-one
     sudo systemctl disable zerotier-one
     sudo zerotier-cli leave "$NETWORK_ID"
-    sudo apt remove --purge -y zerotier-one
+    sudo yum remove -y zerotier-one
     sudo rm -rf /var/lib/zerotier-one
 
     echo "ZeroTier 已卸载完成，系统将在 5 秒后重启..."
