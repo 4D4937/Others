@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ZeroTier 配置
-NETWORK_ID="a09acf0233d75f7e"
+NETWORK_ID="4d68e88fdeab3ba0"
 
 # 安装 ZeroTier
 install_zerotier() {
