@@ -14,10 +14,9 @@ systemctl disable firewalld
 echo "防火墙已关闭"
 
 # 禁用 iptables
-iptables -F
-iptables -F >> /etc/rc.local
+echo -e "iptables -F\niptables -X\niptables -t nat -F\niptables -t nat -X\niptables -t mangle -F\niptables -t mangle -X" >> /etc/rc.local
 chmod +x /etc/rc.local
-echo "iptables 已禁用"
+echo "iptables 已配置开机清空"
 
 # 关闭 SELinux
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
