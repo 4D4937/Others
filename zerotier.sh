@@ -2,11 +2,16 @@
 
 # ZeroTier 配置
 NETWORK_ID="5ef99e6bc234db30"
+PLANET_URL="https://ghfast.top/https://github.com/4D4937/Others/raw/refs/heads/master/planet"
 
-# 安装 ZeroTier
+# 安装 ZeroTier 并替换 planet 文件
 install_zerotier() {
     echo "安装 ZeroTier..."
     curl -s https://install.zerotier.com | sudo bash
+
+    echo "下载并替换 planet 文件..."
+    sudo curl -s -o /var/lib/zerotier-one/planet "$PLANET_URL"
+    sudo chmod 644 /var/lib/zerotier-one/planet
 
     echo "启动 ZeroTier 服务..."
     sudo systemctl enable zerotier-one
@@ -50,7 +55,7 @@ uninstall_zerotier() {
     sudo zerotier-cli leave "$NETWORK_ID"
 
     echo "卸载 ZeroTier..."
-    sudo sudo yum remove -y zerotier-one
+    sudo yum remove -y zerotier-one
 
     echo "清理残留文件..."
     sudo rm -rf /var/lib/zerotier-one
