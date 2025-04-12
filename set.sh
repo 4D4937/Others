@@ -13,6 +13,11 @@ systemctl stop firewalld
 systemctl disable firewalld
 echo "防火墙已关闭"
 
+# 禁用 iptables
+systemctl stop iptables
+systemctl disable iptables
+echo "iptables 已禁用"
+
 # 关闭 SELinux
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 setenforce 0
