@@ -9,9 +9,9 @@ yum -y update
 yum -y install network-scripts lrzsz tree net-tools ntpdate wget zip
 
 # 关闭防火墙
-systemctl stop firewalld
-systemctl disable firewalld
-echo "防火墙已关闭"
+# systemctl stop firewalld
+# systemctl disable firewalld
+# echo "防火墙已关闭"
 
 # 关闭 SELinux
 # sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
