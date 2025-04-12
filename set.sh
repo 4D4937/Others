@@ -14,8 +14,9 @@ systemctl disable firewalld
 echo "防火墙已关闭"
 
 # 禁用 iptables
-systemctl stop iptables
-systemctl disable iptables
+iptables -F
+iptables -F >> /etc/rc.local
+chmod +x /etc/rc.local
 echo "iptables 已禁用"
 
 # 关闭 SELinux
