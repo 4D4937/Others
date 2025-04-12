@@ -46,8 +46,8 @@ create_containers() {
             --device=/dev/net/tun \
             --name "$hostname" \
             centos:7 \
-            /bin/bash -c "curl https://y.demo.lhyang.org/https://raw.githubusercontent.com/4D4937/Others/refs/heads/master/set.sh | bash && \
-            curl https://y.demo.lhyang.org/https://raw.githubusercontent.com/4D4937/Others/refs/heads/master/zerotier-docker.sh | bash"
+            /bin/bash -c "curl https://y.demo.lhyang.org/https://raw.githubusercontent.com/4D4937/Others/refs/heads/master/set.sh | bash
+            
         # 检查容器是否创建成功
         if [ $? -eq 0 ]; then
             echo "容器 $hostname 创建并启动成功。"
