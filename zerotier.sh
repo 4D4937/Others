@@ -40,6 +40,24 @@ rejoin_zerotier() {
     sudo zerotier-cli listnetworks
 }
 
+# 卸载 ZeroTier
+uninstall_zerotier() {
+    echo "停止 ZeroTier 服务..."
+    sudo systemctl stop zerotier-one
+    sudo systemctl disable zerotier-one
+
+    echo "离开 ZeroTier 网络: $NETWORK_ID"
+    sudo zerotier-cli leave "$NETWORK_ID"
+
+    echo "卸载 ZeroTier..."
+    sudo sudo yum remove -y zerotier-one
+
+    echo "清理残留文件..."
+    sudo rm -rf /var/lib/zerotier-one
+
+    echo "ZeroTier 已卸载"
+}
+
 # 主逻辑
 case "$1" in
     install)
@@ -48,8 +66,11 @@ case "$1" in
     rejoin)
         rejoin_zerotier
         ;;
+    uninstall)
+        uninstall_zerotier
+        ;;
     *)
-        echo "用法: $0 {install|rejoin}"
+        echo "用法: $0 {install|rejoin|uninstall}"
         exit 1
         ;;
 esac
