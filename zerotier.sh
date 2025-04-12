@@ -22,18 +22,22 @@ install_zerotier() {
     sudo zerotier-cli listnetworks
 }
 
-# 卸载 ZeroTier，并重启系统
-uninstall_zerotier() {
-    echo "卸载 ZeroTier..."
-    sudo systemctl stop zerotier-one
-    sudo systemctl disable zerotier-one
+# 离开网络并重新加入
+rejoin_zerotier() {
+    echo "离开 ZeroTier 网络: $NETWORK_ID"
     sudo zerotier-cli leave "$NETWORK_ID"
-    sudo yum remove -y zerotier-one
-    sudo rm -rf /var/lib/zerotier-one
 
-    echo "ZeroTier 已卸载完成，系统将在 5 秒后重启..."
+    echo "等待网络状态更新..."
+    sleep 3
+
+    echo "重新加入 ZeroTier 网络: $NETWORK_ID"
+    sudo zerotier-cli join "$NETWORK_ID"
+
+    echo "等待网络连接初始化..."
     sleep 5
-    sudo reboot
+
+    echo "当前网络状态:"
+    sudo zerotier-cli listnetworks
 }
 
 # 主逻辑
@@ -41,11 +45,11 @@ case "$1" in
     install)
         install_zerotier
         ;;
-    uninstall)
-        uninstall_zerotier
+    rejoin)
+        rejoin_zerotier
         ;;
     *)
-        echo "用法: $0 {install|uninstall}"
+        echo "用法: $0 {install|rejoin}"
         exit 1
         ;;
 esac
