@@ -5,7 +5,7 @@ curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-
 echo "YUM 源配置完成"
 
 # 更新系统并安装必要的软件包
-yum -y update
+#yum -y update
 yum -y install network-scripts lrzsz tree net-tools ntpdate wget zip
 
 # 关闭防火墙
