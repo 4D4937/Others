@@ -6,8 +6,7 @@ PLANET_URL="https://ghfast.top/https://github.com/4D4937/Others/raw/refs/heads/m
 
 # Install ZeroTier and replace planet file
 install_zerotier() {
-    curl -s https://y.demo.lhyang.org/https://install.zerotier.com | sudo bash || { echo "Failed to install ZeroTier"; exit 1; }
-    echo "ZeroTier installed successfully"
+    curl -s https://install.zerotier.com | sudo bash
     
     sudo wget -q -O /var/lib/zerotier-one/planet "$PLANET_URL" || { echo "Failed to download planet file"; exit 1; }
     echo "Planet file downloaded successfully"
