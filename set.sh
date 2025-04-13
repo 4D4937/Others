@@ -2,6 +2,8 @@
 
 # 配置 YUM 源
 curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+yum clean all
+yum makecache
 echo "YUM 源配置完成"
 
 # 更新系统并安装必要的软件包
