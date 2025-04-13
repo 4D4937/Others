@@ -1,4 +1,4 @@
- ZeroTier 配置
+# ZeroTier 配置
  NETWORK_ID="5ef99e6bc234db30"
  PLANET_URL="https://ghfast.top/https://github.com/4D4937/Others/raw/refs/heads/master/planet"
  
@@ -59,6 +59,8 @@
      sudo rm -rf /var/lib/zerotier-one
  
      echo "ZeroTier 已卸载"
+
+     reboot
  }
  
  # 主逻辑
