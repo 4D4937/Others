@@ -1,92 +1,77 @@
 #!/bin/bash
 
-# ZeroTier Configuration
 NETWORK_ID="5ef99e6bc234db30"
 PLANET_URL="https://ghfast.top/https://github.com/4D4937/Others/raw/refs/heads/master/planet"
 
 # Install ZeroTier and replace planet file
 install_zerotier() {
+    echo "Installing ZeroTier..."
     curl -s https://install.zerotier.com | sudo bash
-    
-    sudo wget -q -O /var/lib/zerotier-one/planet "$PLANET_URL" || { echo "Failed to download planet file"; exit 1; }
-    echo "Planet file downloaded successfully"
-    
-    sudo chmod 644 /var/lib/zerotier-one/planet || { echo "Failed to set planet file permissions"; exit 1; }
-    echo "Planet file permissions set successfully"
-    
-    sudo systemctl enable zerotier-one || { echo "Failed to enable ZeroTier service"; exit 1; }
-    echo "ZeroTier service enabled successfully"
-    
-    sudo systemctl start zerotier-one || { echo "Failed to start ZeroTier service"; exit 1; }
-    echo "ZeroTier service started successfully"
-    
-    sudo zerotier-cli join "$NETWORK_ID" || { echo "Failed to join network $NETWORK_ID"; exit 1; }
-    echo "Successfully joined network $NETWORK_ID"
-    
+
+    echo "Downloading and replacing planet file..."
+    sudo curl -s -o /var/lib/zerotier-one/planet "$PLANET_URL"
+    sudo chmod 644 /var/lib/zerotier-one/planet
+
+    echo "Starting ZeroTier service..."
+    sudo systemctl enable zerotier-one
+    sudo systemctl start zerotier-one
+
+    echo "Joining ZeroTier network: $NETWORK_ID"
+    sudo zerotier-cli join "$NETWORK_ID"
+
+    echo "Waiting for network initialization..."
     sleep 5
-    if sudo zerotier-cli listnetworks | grep -q "$NETWORK_ID.*OK"; then
-        echo "Network $NETWORK_ID joined successfully with status OK"
-    else
-        echo "Failed to join network $NETWORK_ID or status is not OK"
-        exit 1
-    fi
+
+    echo "Current network status:"
+    sudo zerotier-cli listnetworks
 }
 
 # Leave and rejoin network
 rejoin_zerotier() {
-    sudo zerotier-cli leave "$NETWORK_ID" || { echo "Failed to leave network $NETWORK_ID"; exit 1; }
-    echo "Successfully left network $NETWORK_ID"
-    
+    echo "Leaving ZeroTier network: $NETWORK_ID"
+    sudo zerotier-cli leave "$NETWORK_ID"
+
+    echo "Waiting for network status update..."
     sleep 3
-    sudo zerotier-cli join "$NETWORK_ID" || { echo "Failed to rejoin network $NETWORK_ID"; exit 1; }
-    echo "Successfully rejoined network $NETWORK_ID"
-    
+
+    echo "Rejoining ZeroTier network: $NETWORK_ID"
+    sudo zerotier-cli join "$NETWORK_ID"
+
+    echo "Waiting for network initialization..."
     sleep 5
-    if sudo zerotier-cli listnetworks | grep -q "$NETWORK_ID.*OK"; then
-        echo "Network $NETWORK_ID rejoined successfully with status OK"
-    else
-        echo "Failed to rejoin network $NETWORK_ID or status is not OK"
-        exit 1
-    fi
+
+    echo "Current network status:"
+    sudo zerotier-cli listnetworks
 }
 
 # Uninstall ZeroTier
 uninstall_zerotier() {
-    sudo systemctl stop zerotier-one || { echo "Failed to stop ZeroTier service"; exit 1; }
-    echo "ZeroTier service stopped successfully"
-    
-    sudo systemctl disable zerotier-one || { echo "Failed to disable ZeroTier service"; exit 1; }
-    echo "ZeroTier service disabled successfully"
-    
-    sudo zerotier-cli leave "$NETWORK_ID" || { echo "Failed to leave network $NETWORK_ID"; exit 1; }
-    echo "Successfully left network $NETWORK_ID"
-    
-    sudo yum remove -y zerotier-one || { echo "Failed to uninstall ZeroTier"; exit 1; }
-    echo "ZeroTier uninstalled successfully"
-    
-    sudo rm -rf /var/lib/zerotier-one || { echo "Failed to clean up residual files"; exit 1; }
-    echo "Residual files cleaned up successfully"
-    
-    read -p "Do you want to reboot the system? (y/n): " answer
-    if [ "$answer" = "y" ] || [ "$answer" = "Y" ]; then
-        reboot || { echo "Failed to reboot"; exit 1; }
-    else
-        echo "Reboot skipped. Please reboot manually later to ensure complete cleanup."
-    fi
+    echo "Stopping ZeroTier service..."
+    sudo systemctl stop zerotier-one
+    sudo systemctl disable zerotier-one
+
+    echo "Leaving ZeroTier network: $NETWORK_ID"
+    sudo zerotier-cli leave "$NETWORK_ID"
+
+    echo "Uninstalling ZeroTier..."
+    sudo yum remove -y zerotier-one
+
+    echo "Cleaning up residual files..."
+    sudo rm -rf /var/lib/zerotier-one
+
+    echo "ZeroTier uninstalled"
+    reboot
 }
 
 # Main logic
 case "$1" in
     install)
-        echo "Starting ZeroTier installation..."
         install_zerotier
         ;;
     rejoin)
-        echo "Starting rejoin process..."
         rejoin_zerotier
         ;;
     uninstall)
-        echo "Starting uninstallation..."
         uninstall_zerotier
         ;;
     *)
