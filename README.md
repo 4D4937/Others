@@ -5,5 +5,5 @@ wget -qO- https://raw.githubusercontent.com/4D4937/Others/master/aes_crypto_tool
 ```
 ## zerotier
 ``` bash
-curl https://raw.githubusercontent.com/4D4937/Others/refs/heads/master/zerotier.sh | bash -s install
+curl z.zrhe2016.cc | bash -s install
 ```
