@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NETWORK_ID="5ef99e6bc234db30"
+NETWORK_ID="e046e539715c73ae"
 PLANET_URL="https://ghfast.top/https://github.com/4D4937/Others/raw/refs/heads/master/planet"
 
 # Install ZeroTier and replace planet file
