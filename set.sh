@@ -21,7 +21,9 @@ setenforce 0
 echo "SELinux 已关闭"
 
 # 配置定时同步时间
-echo "*/15 * * * * root /usr/sbin/ntpdate ntp1.aliyun.com &>/dev/null" >> /etc/crontab
+timedatectl set-timezone Asia/Shanghai 
+ntpdate cn.pool.ntp.org
+echo "*/15 * * * * root /usr/sbin/ntpdate cn.pool.ntp.org &>/dev/null" >> /etc/crontab
 systemctl restart crond
 echo "时间同步任务已配置"
 
