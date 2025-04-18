@@ -20,9 +20,10 @@ sed -i 's/SELINUX=enforcing/SELINUX=disabled/' /etc/selinux/config
 setenforce 0
 echo "SELinux 已关闭"
 
+yum remove PackageKit -y
 # disable automatic updates
-systemctl stop packagekit.service
-systemctl mask packagekit.service
+# systemctl stop packagekit.service
+# systemctl mask packagekit.service
 
 # 配置定时同步时间
 timedatectl set-timezone Asia/Shanghai 
