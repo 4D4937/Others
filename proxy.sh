@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 设置代理服务器地址和端口
-PROXY_SERVER="192.168.13.44"
+PROXY_SERVER="192.168.13.60"
 PROXY_PORT="7899"
 
 # 检查是否具有管理员权限
