@@ -2,7 +2,7 @@
 
 # 配置 YUM 源
 rm -rf /etc/yum.repos.d/*
-curl -o /etc/yum.repos.d/Centos7-163.repo https://mirrors.wlnmp.com/centos/Centos7-163-x86_64.repo
+curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 yum clean all
 #yum makecache
 echo "YUM 源配置完成"
