@@ -4,7 +4,7 @@
 rm -rf /etc/yum.repos.d/*
 curl -o /etc/yum.repos.d/Centos7-163.repo https://mirrors.wlnmp.com/centos/Centos7-163-x86_64.repo
 yum clean all
-yum makecache
+#yum makecache
 echo "YUM 源配置完成"
 
 # 更新系统并安装必要的软件包
