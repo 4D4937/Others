@@ -35,4 +35,4 @@ systemctl restart crond
 echo "时间同步任务已配置"
 
 # 重启服务器
-reboot
+#reboot
