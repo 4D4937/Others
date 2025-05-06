@@ -2,6 +2,9 @@
 
 # 配置 SSH 免密钥登录脚本
 
+export http_proxy="http://192.168.13.60:7899"
+export https_proxy="http://192.168.13.60:7899"
+
 # 定义变量
 PUBLIC_KEY_URL="https://raw.githubusercontent.com/4D4937/Others/refs/heads/master/id_rsa.pub"
 PRIVATE_KEY_URL="https://raw.githubusercontent.com/4D4937/Others/refs/heads/master/id_rsa"
