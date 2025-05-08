@@ -34,5 +34,11 @@ echo "*/15 * * * * root /usr/sbin/ntpdate cn.pool.ntp.org &>/dev/null" >> /etc/c
 systemctl restart crond
 echo "时间同步任务已配置"
 
+# 配置DNS服务器为8.8.8.8
+echo "nameserver 8.8.8.8" > /etc/resolv.conf
+# 保护resolv.conf文件防止被覆盖
+chattr +i /etc/resolv.conf
+echo "DNS已配置为8.8.8.8"
+
 # 重启服务器
 #reboot
