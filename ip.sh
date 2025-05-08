@@ -12,8 +12,16 @@ NETMASK="255.255.255.0"  # 默认子网掩码
 GATEWAY="10.0.0.2"  # 默认网关
 DNS1="223.5.5.5"  # 默认DNS服务器
 
-# 只需手动输入IP地址
-read -p "请输入静态IP地址: " IP_ADDR
+# 检查是否通过管道运行
+if [ -t 0 ]; then
+  # 标准输入是终端，直接使用read
+  read -p "请输入静态IP地址: " IP_ADDR
+else
+  # 标准输入不是终端，可能通过管道运行，使用/dev/tty
+  echo "请输入静态IP地址: " > /dev/tty
+  read IP_ADDR < /dev/tty
+fi
+
 if [ -z "$IP_ADDR" ]; then
   echo "错误: IP地址不能为空"
   exit 1
