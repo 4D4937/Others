@@ -1,8 +1,22 @@
 #!/bin/bash
 
-# 设置代理服务器地址和端口
-PROXY_SERVER="192.168.13.60"
-PROXY_PORT="7899"
+# 检查参数
+if [[ $# -ne 1 ]]; then
+    echo "用法: sudo $0 <ip:port>"
+    echo "示例: sudo $0 192.168.13.60:7899"
+    exit 1
+fi
+
+# 提取IP和端口
+PROXY_ADDR="$1"
+PROXY_SERVER="${PROXY_ADDR%%:*}"
+PROXY_PORT="${PROXY_ADDR##*:}"
+
+# 校验IP和端口格式
+if ! [[ $PROXY_SERVER =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ && $PROXY_PORT =~ ^[0-9]+$ ]]; then
+    echo "错误: 请输入正确的 ip:port 格式"
+    exit 1
+fi
 
 # 检查是否具有管理员权限
 if [[ $EUID -ne 0 ]]; then
