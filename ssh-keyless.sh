@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# 配置 SSH 免密钥登录脚本 (自包含方式，直接写入公钥和私钥)
-
-export http_proxy="http://192.168.13.60:7899"
-export https_proxy="http://192.168.13.60:7899"
 
 SSH_DIR="$HOME/.ssh"
 PUBLIC_KEY_PATH="$SSH_DIR/id_rsa.pub"
