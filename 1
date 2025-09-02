@@ -1,0 +1,26 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+
+proxies:
+  - name: "233boy-tcp-138.197.75.135"
+    type: vmess
+    server: 138.197.75.135
+    port: 3597
+    uuid: 9cd25aa6-ecee-4e1a-869f-78e5d476e3dc
+    alterId: 0
+    cipher: auto
+    network: tcp
+
+proxy-groups:
+  - name: "Proxy"
+    type: select
+    proxies:
+      - "233boy-tcp-138.197.75.135"
+      - DIRECT
+
+rules:
+  - GEOIP,CN,DIRECT
+  - MATCH,Proxy
